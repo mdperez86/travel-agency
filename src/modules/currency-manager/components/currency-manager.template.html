@@ -1,0 +1,41 @@
+<div ng-controller="currencyController">
+
+  <h1 class="mb-4">Create or edit currency configurations</h1>
+
+  <div class="row">
+    <div class="col-md-7 mb-4">
+      <div class="card">
+        <div class="card-header">Configurator</div>
+        <div class="card-body">
+          <currency-config-form record="record" on-submit="submit(record)" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-5 mb-4">
+      <div class="card text-dark bg-info">
+        <div class="card-header">Format preview</div>
+        <div class="card-body">
+          <span class="display-4">
+            {{sampleNumber | currencyFormat:record.market:record.currency:record.config}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Currency configuration list</h2>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="btn-group">
+        <a ng-href="{{downloadLink()}}" download="currency-configs.csv" class="btn btn-outline-secondary">
+          <i class="fas fa-download" aria-hidden="true"></i> Download
+        </a>
+      </div>
+
+      <currency-config-list configs="configs" on-edit="edit(market, currency)" on-delete="delete(market, currency)" />
+    </div>
+  </div>
+</div>

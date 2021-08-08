@@ -1,0 +1,109 @@
+<form name="configForm" novalidate ng-submit="$ctrl.submit(configForm)" class="row">
+  <div class="col-lg-6">
+    <div class="form-floating mb-3">
+      <select ng-model="$ctrl.record.market" ng-class="$ctrl.hasError(configForm, 'market') ? 'is-invalid' : ''" class="form-select" name="market" id="market" required="" aria-label="Countries" aria-describedby="market-invalid-feedback">
+        <option ng-repeat="country in $ctrl.countries" value="{{country.code}}">{{country.name}}</option>
+      </select>
+      <label for="market">Market</label>
+      <div ng-show="$ctrl.hasError(configForm, 'market')" id="market-invalid-feedback" class="invalid-feedback">
+        <span ng-show="configForm.market.$error.required">
+          Market field is required
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="form-floating mb-3">
+      <select ng-model="$ctrl.record.currency" ng-class="$ctrl.hasError(configForm, 'currency') ? 'is-invalid' : ''" class="form-select" name="currency" id="currency" required="" aria-label="Currencies" aria-describedby="currency-invalid-feedback">
+        <option ng-repeat="currency in $ctrl.currencies" value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+      </select>
+      <label for="currency">Currency</label>
+      <div ng-show="$ctrl.hasError(configForm, 'currency')" id="currency-invalid-feedback" class="invalid-feedback">
+        <span ng-show="configForm.currency.$error.required">
+          Currency field is required
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-12">
+    <div class="form-floating mb-3">
+      <select ng-model="$ctrl.record.config.language" ng-class="$ctrl.hasError(configForm, 'language') ? 'is-invalid' : ''" class="form-select" name="language" id="language" required="" aria-label="Countries" aria-describedby="language-invalid-feedback">
+        <option ng-repeat="language in $ctrl.languages" value="{{language.code}}">{{language.name}}</option>
+      </select>
+      <label for="language">Language</label>
+      <div ng-show="$ctrl.hasError(configForm, 'language')" id="language-invalid-feedback" class="invalid-feedback">
+        <span ng-show="configForm.language.$error.required">
+          Language field is required
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <fieldset class="col mb-3">
+        <legend>Show</legend>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.show" class="form-check-input" type="radio" name="show" id="showIso" value="iso">
+          <label class="form-check-label" for="showIso">Default (ISO)</label>
+        </div>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.show" class="form-check-input" type="radio" name="show" id="code" value="code">
+          <label class="form-check-label" for="code">Code</label>
+        </div>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.show" class="form-check-input" type="radio" name="show" id="symbol" value="symbol">
+          <label class="form-check-label" for="symbol">Symbol</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="col mb-3">
+        <legend>Where</legend>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.where" class="form-check-input" type="radio" name="where" id="whereIso" value="iso">
+          <label class="form-check-label" for="whereIso">Default (ISO)</label>
+        </div>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.where" class="form-check-input" type="radio" name="where" id="before" value="before">
+          <label class="form-check-label" for="before">Before</label>
+        </div>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.where" class="form-check-input" type="radio" name="where" id="after" value="after">
+          <label class="form-check-label" for="after">After</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="col mb-3">
+        <legend>Format</legend>
+        <div class="form-check">
+          <input ng-model="$ctrl.record.config.format" class="form-check-input" type="radio" name="format" id="formatIso" value="iso">
+          <label class="form-check-label" for="formatIso">Default (ISO)</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input ng-model="$ctrl.record.config.format" class="form-check-input" type="radio" name="format" id="format1" value="#,###.##">
+          <label class="form-check-label" for="format1">#,###.##</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input ng-model="$ctrl.record.config.format" class="form-check-input" type="radio" name="format" id="format2" value="#.###,##">
+          <label class="form-check-label" for="format2">#.###,##</label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="form-check form-switch mb-4">
+      <input ng-model="$ctrl.record.config.cents" class="form-check-input" type="checkbox" id="cents">
+      <label class="form-check-label" for="cents">Show cents</label>
+    </div>
+  </div>
+  
+  <div class="col-12 text-end">
+    <button type="submit" class="btn btn-outline-primary btn-lg">
+      <i class="fas fa-save" aria-hidden="true"></i> Save
+    </button>
+  </div>
+
+</form>
